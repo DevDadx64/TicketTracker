@@ -31,7 +31,7 @@ class TicketForm
                     ->default(TicketPriority::Normal)
                     ->native(false),
 
-                TextInput::make('assigned_to_user_id')
+                Select::make('assigned_to_user_id')
                     ->label('Assigned to')
                     ->relationship('assignedTo', 'name')
                     ->searchable()

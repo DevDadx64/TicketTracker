@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Tickets\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -16,11 +17,11 @@ class TicketInfolist
                     ->badge(),
                 TextEntry::make('priority')
                     ->badge(),
-                TextEntry::make('assigned_to_user_id')
-                    ->numeric()
+                TextEntry::make('assignedTo.name')
+                    ->label('Assigned to')
                     ->placeholder('-'),
-                TextEntry::make('created_by_user_id')
-                    ->numeric()
+                TextEntry::make('createdBy.name')
+                    ->label('Created by')
                     ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()

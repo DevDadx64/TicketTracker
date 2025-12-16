@@ -22,30 +22,32 @@ class TicketsTable
 
             ->columns([
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('status')
                     ->badge()
-                    ->searchable(),
+                    ->sortable(),
                 TextColumn::make('priority')
                     ->badge()
-                    ->searchable(),
-                TextColumn::make('assigned_to_user_id')
-                    ->numeric()
                     ->sortable(),
-                TextColumn::make('created_by_user_id')
-                    ->numeric()
+
+                TextColumn::make('assignedTo.name')
+                    ->label('Assigned to')
                     ->sortable(),
+
+                TextColumn::make('createdBy.name')
+                    ->label('Created by')
+                    ->sortable(),
+
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('status')->options(TicketStatus::class),
+                SelectFilter::make('priority')->options(TicketPriority::class),
             ])
             ->recordActions([
                 ViewAction::make(),
