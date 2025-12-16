@@ -2,10 +2,22 @@
 
 namespace App\Enums;
 
-enum TicketPriority: string
+use Filament\Support\Contracts\HasLabel;
+
+enum TicketPriority: string implements HasLabel
 {
     case Low = 'low';
     case Normal = 'normal';
     case High = 'high';
     case Urgent = 'urgent';
+
+    public function getLabel(): ?string
+    {
+        return match ($this) {
+            self::Low => 'Low',
+            self::Normal => 'Normal',
+            self::High => 'High',
+            self::Urgent => 'Urgent',
+        };
+    }
 }
