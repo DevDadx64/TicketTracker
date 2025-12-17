@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Tickets\Tables;
 use App\Enums\TicketStatus;
 use App\Enums\TicketPriority;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -41,7 +42,7 @@ class TicketsTable
                     ->sortable(),
 
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->dateTime('d.m.Y H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -50,8 +51,8 @@ class TicketsTable
                 SelectFilter::make('priority')->options(TicketPriority::class),
             ])
             ->recordActions([
-                ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

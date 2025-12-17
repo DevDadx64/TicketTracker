@@ -29,11 +29,6 @@ class TicketResource extends Resource
         return TicketForm::configure($schema);
     }
 
-    public static function infolist(Schema $schema): Schema
-    {
-        return TicketInfolist::configure($schema);
-    }
-
     public static function table(Table $table): Table
     {
         return TicketsTable::configure($table);
@@ -51,7 +46,6 @@ class TicketResource extends Resource
         return [
             'index' => ListTickets::route('/'),
             'create' => CreateTicket::route('/create'),
-            'view' => ViewTicket::route('/{record}'),
             'edit' => EditTicket::route('/{record}/edit'),
         ];
     }

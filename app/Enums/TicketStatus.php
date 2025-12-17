@@ -12,7 +12,7 @@ enum TicketStatus: string implements HasLabel
 
     public function getLabel(): ?string
     {
-        return match ($this) {
+        return match ($this){
             self::Open => 'Open',
             self::InProgress => 'In Progress',
             self::Closed => 'Closed',
